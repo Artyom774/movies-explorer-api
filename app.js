@@ -1,8 +1,8 @@
 // основной файл сервера
 // require('dotenv').config();
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+const express = require('express'); // фреймворк express для NodeJS
+const bodyParser = require('body-parser'); // анализирует тела входящих запросов в промежуточном программном обеспечении
+const mongoose = require('mongoose'); // база данных NongoDB
 const { errors } = require('celebrate');
 
 

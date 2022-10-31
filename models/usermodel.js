@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({ // создание схемы для �
   name: { // имя
     type: String,
     minlength: 2,
-    maxlength: 30,
+    maxlength: 64,
     default: 'Новый пользователь',
   },
 });

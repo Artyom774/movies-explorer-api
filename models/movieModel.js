@@ -1,7 +1,6 @@
 // схема сущности movie в базе данных MongoDB
 const mongoose = require('mongoose');
-// const { URLregex } = require('../utils/constants');
-const URLregex = /http[s]?:\/\/(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*,]|(?:%[0-9a-fA-F][0-9a-fA-F]))+/; // перенести в constants
+const { URLregex } = require('../utils/constants');
 
 const movieSchema = new mongoose.Schema({ // создание схемы для пользователей в mongoose
   county: { // страна
@@ -13,7 +12,7 @@ const movieSchema = new mongoose.Schema({ // создание схемы для 
   director: { // режиссёр
     type: String,
     required: true,
-    maxlength: 128,
+    maxlength: 256,
     minlength: 2,
   },
   duration: { // длительность
@@ -23,7 +22,7 @@ const movieSchema = new mongoose.Schema({ // создание схемы для 
   year: { // год
     type: String,
     required: true,
-    maxlength: 32,
+    maxlength: 64,
     minlength: 2,
   },
   description: { // описание
