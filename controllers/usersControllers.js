@@ -1,12 +1,12 @@
 // контроллеры для работы с сущностями users
-// const bcrypt = require('bcryptjs');
-// const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
 const BadRequestError = require('../errors/BadRequestError');
 const NotFoundError = require('../errors/NotFoundError');
-// const DuplicateError = require('../errors/DuplicateError');
+const DuplicateError = require('../errors/DuplicateError');
 
-// const { NODE_ENV, JWT_SECRET } = process.env;
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 module.exports.getMeById = (req, res, next) => { // возвращает информацию о пользователе
   User.findById(req.user)
@@ -52,23 +52,18 @@ module.exports.updateMeById = (req, res, next) => { // обновляет инф
     });
 };
 
-/*
 module.exports.createUser = (req, res, next) => {
   bcrypt.hash(req.body.password, 10)
     .then((hash) => User.create({
-      name: req.body.name,
       email: req.body.email,
       password: hash, // записываем хеш в базу
-      about: req.body.about,
-      avatar: req.body.avatar,
+      name: req.body.name,
     }))
     .then((user) => {
       res.status(201).send({
         _id: user._id,
-        name: user.name,
         email: user.email,
-        about: user.about,
-        avatar: user.avatar,
+        name: user.name,
       });
     })
     .catch((err) => {
@@ -76,7 +71,7 @@ module.exports.createUser = (req, res, next) => {
         next(new BadRequestError('Данные о новом пользователе не удовлетворяют требованиям валидации'));
       } else
       if (err.code === 11000) {
-        next(new DuplicateError('Пользователь с таким email уже есть'));
+        next(new DuplicateError('Пользователь с таким email уже есть в базе данных'));
       } else {
         next(err);
       }
@@ -88,7 +83,7 @@ module.exports.login = (req, res, next) => {
 
   User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '30d' });
       res.send({ token });
     })
     .catch((err) => {
@@ -98,4 +93,4 @@ module.exports.login = (req, res, next) => {
         next(err);
       }
     });
-}; */
+};
