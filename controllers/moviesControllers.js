@@ -6,39 +6,26 @@ const Movie = require('../models/movieModel');
 
 // возвращает все сохранённые текущим пользователем фильмы
 module.exports.findAllMoviesOfUserById = (req, res, next) => {
-  Movie.find({ _id: req.params.id })
+  Movie.find({ owner: req.user._id })
     .then((movies) => res.send(movies))
     .catch((err) => next(err));
 };
 
 module.exports.createMovie = (req, res, next) => { // создаёт фильм с переданными в теле данными
   const ownerId = req.user._id;
-  const {
-    country,
-    director,
-    duration,
-    year,
-    description,
-    image,
-    trailer,
-    nameRU,
-    nameEN,
-    thumbnail,
-    movieId,
-  } = req.body;
 
   Movie.create({
-    country,
-    director,
-    duration,
-    year,
-    description,
-    image,
-    trailer,
-    nameRU,
-    nameEN,
-    thumbnail,
-    movieId,
+    country: req.body.country,
+    director: req.body.director,
+    duration: req.body.duration,
+    year: req.body.year,
+    description: req.body.description,
+    image: req.body.image,
+    trailerLink: req.body.trailerLink,
+    nameRU: req.body.nameRU,
+    nameEN: req.body.nameEN,
+    thumbnail: req.body.thumbnail,
+    movieId: req.body.movieId,
     owner: ownerId,
   })
     .then((movie) => res.send(movie))

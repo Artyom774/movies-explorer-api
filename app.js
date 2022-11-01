@@ -4,16 +4,10 @@ const express = require('express'); // фреймворк express для NodeJS
 const bodyParser = require('body-parser'); // анализирует тела входящих запросов в промежуточном программном обеспечении
 const mongoose = require('mongoose'); // база данных NongoDB
 const { errors } = require('celebrate');
-
-
-
-
-
-/*
-const usersRouter = require('./routes/users');
-const cardsRouter = require('./routes/cards');
-const signInRouter = require('./routes/signIn');
-const signUpRouter = require('./routes/signUp');
+const usersRouter = require('./routes/usersRouter');
+const moviesRouter = require('./routes/moviesRouter');
+const signInRouter = require('./routes/signInRouter');
+const signUpRouter = require('./routes/signUpRouter');
 const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/errorHandler');
 const NotFoundError = require('./errors/NotFoundError');
@@ -24,10 +18,6 @@ const app = express(); // app работает через фреймворк Exp
 
 const allowedCors = [
   'http://localhost:3000',
-  'https://84.201.162.71:3000',
-  'https://your-mesto.nomoredomains.icu',
-  'http://your-mesto.nomoredomains.icu',
-  'http://127.0.0.1',
 ];
 
 // eslint-disable-next-line consistent-return
@@ -50,7 +40,7 @@ app.use((req, res, next) => {
   next();
 });
 
-mongoose.connect('mongodb://localhost:27017/mestodb', { // подключение к базе MongooseDB
+mongoose.connect('mongodb://localhost:27017/bitfilmsdb', { // подключение к базе MongooseDB
   useNewUrlParser: true,
 });
 
@@ -62,7 +52,7 @@ app.use('/signin', signInRouter); // авторизация пользовате
 app.use('/signup', signUpRouter); // регистрация пользователя
 app.use(auth); // проверка токена
 app.use('/users', usersRouter); // пути для работы с карточками
-app.use('/cards', cardsRouter); // пути для работы с пользователем
+app.use('/movies', moviesRouter); // пути для работы с пользователем
 app.use('/', (req, res, next) => { next(new NotFoundError('страница не найдена')); }); // введён неизвестный путь
 app.use(errorLogger); // логи
 app.use(errors()); // обработка ошибок библиотеки celebrate
@@ -71,4 +61,3 @@ app.use(errorHandler); // обработка ошибок сервера
 app.listen(PORT, () => { // при запуске сервера выводит его порт
   console.log(`Порт сервера: ${PORT}`);
 });
-*/

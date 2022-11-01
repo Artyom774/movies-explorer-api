@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const { URLregex } = require('../utils/constants');
 
 const movieSchema = new mongoose.Schema({ // создание схемы для пользователей в mongoose
-  county: { // страна
+  country: { // страна
     type: String,
     required: true,
     maxlength: 256,
@@ -58,13 +58,13 @@ const movieSchema = new mongoose.Schema({ // создание схемы для 
     minlength: 2,
   },
   nameRU: { // название на русском
-    type: Number,
+    type: String,
     required: true,
     maxlength: 256,
     minlength: 1,
   },
   nameEN: { // название на английском
-    type: Number,
+    type: String,
     required: true,
     maxlength: 256,
     minlength: 1,

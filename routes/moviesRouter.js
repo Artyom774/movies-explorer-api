@@ -12,11 +12,11 @@ moviesRouter.post('/', celebrate({ // создаёт фильм с переда�
   body: Joi.object().keys({
     country: Joi.string().required().min(2).max(256),
     director: Joi.string().required().min(2).max(256),
-    duration: Joi.Number().required(),
+    duration: Joi.number().required(),
     year: Joi.string().required().min(2).max(64),
     description: Joi.string().required().min(2).max(1024),
     image: Joi.string().required().pattern(URLregex),
-    trailer: Joi.string().required().pattern(URLregex),
+    trailerLink: Joi.string().required().pattern(URLregex),
     nameRU: Joi.string().required().min(1).max(256),
     nameEN: Joi.string().required().min(1).max(256),
     thumbnail: Joi.string().required().pattern(URLregex),
