@@ -1,8 +1,8 @@
 // схема сущности user в базе данных MongoDB
-// const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const { isEmail } = require('validator'); // достать валидацию для почты
-// const UnauthorizedError = require('../errors/UnauthorizedError');
+const UnauthorizedError = require('../errors/UnauthorizedError');
 
 const userSchema = new mongoose.Schema({ // создание схемы для пользователей в mongoose
   email: { // почта
@@ -25,7 +25,6 @@ const userSchema = new mongoose.Schema({ // создание схемы для �
 });
 userSchema.set('versionKey', false); // убирает __v при создании пользователя
 
-/*
 userSchema.statics.findUserByCredentials = function (email, password) {
   return this.findOne({ email })
     .then((user) => {
@@ -49,4 +48,3 @@ userSchema.statics.findUserByCredentials = function (email, password) {
 };
 
 module.exports = mongoose.model('user', userSchema);
-*/
