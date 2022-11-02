@@ -1,2 +1,9 @@
-# movies-explorer-api
+# Бэкэнд проекта "Movie Explorer"
 
+Статус: в разработке
+
+Функционал. Бэкэнд к сервису, в котором можно найти фильмы по запросу и сохранить в личном кабинете. Сервер написан на Node.js с фреймворком Express и базой данных MongoDB.
+  
+IP 158.160.17.158
+
+Backend https://api.your-mesto.nomoredomains.icu

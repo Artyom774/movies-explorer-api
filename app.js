@@ -13,7 +13,7 @@ const errorHandler = require('./middlewares/errorHandler');
 const NotFoundError = require('./errors/NotFoundError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { PORT = 3100 } = process.env; // файл .env хранится на сервере
+const { PORT = 3050 } = process.env; // файл .env хранится на сервере
 const app = express(); // app работает через фреймворк Express
 
 const allowedCors = [
