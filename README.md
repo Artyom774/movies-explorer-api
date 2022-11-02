@@ -4,6 +4,6 @@
 
 Функционал. Бэкэнд к сервису, в котором можно найти фильмы по запросу и сохранить в личном кабинете. Сервер написан на Node.js с фреймворком Express и базой данных MongoDB.
   
-IP 158.160.17.158
+IP 51.250.17.109
 
-Backend https://api.your-mesto.nomoredomains.icu
+Backend https://api.your-mesto.nomoredomains.icu/
