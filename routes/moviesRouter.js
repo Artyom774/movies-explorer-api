@@ -20,7 +20,7 @@ moviesRouter.post('/', celebrate({ // создаёт фильм с переда�
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
     thumbnail: Joi.string().required().pattern(URLregex),
-    movieId: Joi.string().required(),
+    movieId: Joi.number().required(),
   }),
 }), createMovie);
 moviesRouter.delete('/:id', celebrate({
