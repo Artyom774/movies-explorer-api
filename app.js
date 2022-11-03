@@ -38,7 +38,7 @@ app.use((req, res, next) => {
   return next();
 });
 
-mongoose.connect('mongodb://localhost:27017/bitfilmsdb', { // подключение к базе MongooseDB
+mongoose.connect('mongodb://localhost:27017/moviesdb', { // подключение к базе MongooseDB
   useNewUrlParser: true,
 });
 
