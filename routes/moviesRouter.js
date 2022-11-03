@@ -10,17 +10,17 @@ const { URLregex, idRegex } = require('../utils/constants');
 moviesRouter.get('/', findAllMoviesOfUserById); // возвращает все сохранённые текущим  пользователем фильмы
 moviesRouter.post('/', celebrate({ // создаёт фильм с переданными в теле country, director, duration, year, description, image, trailer, nameRU, nameEN и thumbnail, movieId
   body: Joi.object().keys({
-    country: Joi.string().required().min(2).max(256),
-    director: Joi.string().required().min(2).max(256),
+    country: Joi.string().required(),
+    director: Joi.string().required(),
     duration: Joi.number().required(),
-    year: Joi.string().required().min(2).max(64),
-    description: Joi.string().required().min(2).max(1024),
+    year: Joi.string().required(),
+    description: Joi.string().required(),
     image: Joi.string().required().pattern(URLregex),
     trailerLink: Joi.string().required().pattern(URLregex),
-    nameRU: Joi.string().required().min(1).max(256),
-    nameEN: Joi.string().required().min(1).max(256),
+    nameRU: Joi.string().required(),
+    nameEN: Joi.string().required(),
     thumbnail: Joi.string().required().pattern(URLregex),
-    movieId: Joi.string().required().min(2).max(64),
+    movieId: Joi.string().required(),
   }),
 }), createMovie);
 moviesRouter.delete('/:id', celebrate({

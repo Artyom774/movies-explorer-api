@@ -19,8 +19,7 @@ const userSchema = new mongoose.Schema({ // создание схемы для �
     type: String,
     required: true,
     minlength: 2,
-    maxlength: 64,
-    default: 'Новый пользователь',
+    maxlength: 30,
   },
 });
 userSchema.set('versionKey', false); // убирает __v при создании пользователя

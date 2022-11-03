@@ -42,6 +42,9 @@ module.exports.updateMeById = (req, res, next) => { // обновляет инф
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestError('Новые данные не удовлетворяют требованиям валидации'));
+      } else
+      if (err.code === 11000) {
+        next(new DuplicateError('Пользователь с таким email уже есть в базе данных'));
       } else {
         next(err);
       }

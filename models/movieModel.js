@@ -6,14 +6,10 @@ const movieSchema = new mongoose.Schema({ // создание схемы для 
   country: { // страна
     type: String,
     required: true,
-    maxlength: 256,
-    minlength: 2,
   },
   director: { // режиссёр
     type: String,
     required: true,
-    maxlength: 256,
-    minlength: 2,
   },
   duration: { // длительность
     type: Number,
@@ -22,14 +18,10 @@ const movieSchema = new mongoose.Schema({ // создание схемы для 
   year: { // год
     type: String,
     required: true,
-    maxlength: 64,
-    minlength: 2,
   },
   description: { // описание
     type: String,
     required: true,
-    maxlength: 1024,
-    minlength: 2,
   },
   image: { // ссылка на постер
     type: String,
@@ -54,20 +46,14 @@ const movieSchema = new mongoose.Schema({ // создание схемы для 
   movieId: { // id фильма, который содержится в сервисе MoviesExplorer
     type: String,
     required: true,
-    maxlength: 64,
-    minlength: 2,
   },
   nameRU: { // название на русском
     type: String,
     required: true,
-    maxlength: 256,
-    minlength: 1,
   },
   nameEN: { // название на английском
     type: String,
     required: true,
-    maxlength: 256,
-    minlength: 1,
   },
 });
 movieSchema.set('versionKey', false); // убирает __v при создании пользователя
