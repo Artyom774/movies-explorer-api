@@ -20,7 +20,6 @@ const allowedCors = [
   'http://localhost:3000',
 ];
 
-// eslint-disable-next-line consistent-return
 app.use((req, res, next) => {
   const { origin } = req.headers; // сохраняем источник запроса в переменную origin
   if (allowedCors.includes(origin)) { // проверяем, что источник запроса есть среди разрешённых
@@ -37,7 +36,7 @@ app.use((req, res, next) => {
     return res.end();
   }
 
-  next();
+  return next();
 });
 
 mongoose.connect('mongodb://localhost:27017/bitfilmsdb', { // подключение к базе MongooseDB
