@@ -3,7 +3,6 @@ require('dotenv').config();
 const express = require('express'); // фреймворк express для NodeJS
 const bodyParser = require('body-parser'); // анализирует тела входящих запросов в промежуточном программном обеспечении
 const mongoose = require('mongoose'); // база данных NongoDB
-const { errors } = require('celebrate');
 const usersRouter = require('./routes/usersRouter');
 const moviesRouter = require('./routes/moviesRouter');
 const signInRouter = require('./routes/signInRouter');
@@ -54,7 +53,6 @@ app.use('/users', usersRouter); // пути для работы с карточ�
 app.use('/movies', moviesRouter); // пути для работы с пользователем
 app.use('/', (req, res, next) => { next(new NotFoundError('страница не найдена')); }); // введён неизвестный путь
 app.use(errorLogger); // логи
-app.use(errors()); // обработка ошибок библиотеки celebrate
 app.use(errorHandler); // обработка ошибок сервера
 
 app.listen(PORT, () => { // при запуске сервера выводит его порт

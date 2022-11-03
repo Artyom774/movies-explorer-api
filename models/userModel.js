@@ -14,6 +14,7 @@ const userSchema = new mongoose.Schema({ // создание схемы для �
   password: { // пароль
     type: String,
     required: true,
+    select: false,
   },
   name: { // имя
     type: String,

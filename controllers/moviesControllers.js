@@ -15,17 +15,7 @@ module.exports.createMovie = (req, res, next) => { // создаёт фильм 
   const ownerId = req.user._id;
 
   Movie.create({
-    country: req.body.country,
-    director: req.body.director,
-    duration: req.body.duration,
-    year: req.body.year,
-    description: req.body.description,
-    image: req.body.image,
-    trailerLink: req.body.trailerLink,
-    nameRU: req.body.nameRU,
-    nameEN: req.body.nameEN,
-    thumbnail: req.body.thumbnail,
-    movieId: req.body.movieId,
+    ...req.body,
     owner: ownerId,
   })
     .then((movie) => res.send(movie))
@@ -44,13 +34,11 @@ module.exports.deleteMovie = (req, res, next) => { // удаляет сохра�
   Movie.findById(req.params.id)
     .orFail(new NotFoundError(`Карточка c id '${req.params.id}' не найдена`))
     .then((movie) => {
-      if (movie) {
-        if (movie.owner.toString() === ownerId) {
-          movie.delete()
-            .then(() => res.status(200).json({ message: `Фильм c id '${req.params.id}' успешно удалён` }))
-            .catch((err) => next(err));
-        } else { throw new ForbiddenError('Вы не сохраняли этот фильм'); }
-      }
+      if (movie.owner.toString() === ownerId) {
+        movie.delete()
+          .then(() => res.status(200).json({ message: `Фильм c id '${req.params.id}' успешно удалён` }))
+          .catch((err) => next(err));
+      } else { throw new ForbiddenError('Вы не сохраняли этот фильм'); }
     })
     .catch((err) => {
       if (err.name === 'CastError') {

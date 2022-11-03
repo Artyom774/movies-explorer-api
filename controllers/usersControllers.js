@@ -12,12 +12,10 @@ module.exports.getMeById = (req, res, next) => { // возвращает инф�
   User.findById(req.user)
     .orFail(new NotFoundError(`Пользователь c id '${req.params.id}' не найден`))
     .then((user) => {
-      if (user) {
-        res.status(200).send({
-          email: user.email,
-          name: user.name,
-        });
-      }
+      res.status(200).send({
+        email: user.email,
+        name: user.name,
+      });
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -35,13 +33,11 @@ module.exports.updateMeById = (req, res, next) => { // обновляет инф
   User.findByIdAndUpdate(meId, { email, name }, { new: true, runValidators: true })
     .orFail(new NotFoundError(`Пользователь c id '${req.params.id}' не найден`))
     .then((user) => {
-      if (user) {
-        res.status(200).send({
-          _id: user._id,
-          email: user.email,
-          name: user.name,
-        });
-      }
+      res.status(200).send({
+        _id: user._id,
+        email: user.email,
+        name: user.name,
+      });
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
