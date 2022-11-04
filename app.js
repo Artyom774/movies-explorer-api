@@ -12,6 +12,8 @@ const errorHandler = require('./middlewares/errorHandler');
 const NotFoundError = require('./errors/NotFoundError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
+const { NODE_ENV, DB_ADDRESS } = process.env;
+
 const { PORT = 3050 } = process.env; // файл .env хранится на сервере
 const app = express(); // app работает через фреймворк Express
 
@@ -38,7 +40,7 @@ app.use((req, res, next) => {
   return next();
 });
 
-mongoose.connect('mongodb://localhost:27017/moviesdb', { // подключение к базе MongooseDB
+mongoose.connect(NODE_ENV === 'production' ? DB_ADDRESS : 'mongodb://localhost:27017/bitfilmsdb', { // подключение к базе MongooseDB
   useNewUrlParser: true,
 });
 
