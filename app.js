@@ -5,7 +5,7 @@ const mongoose = require('mongoose'); // база данных NongoDB
 const mainRouter = require('./routes/index'); // файл со всеми роутами
 const mongoAddress = require('./utils/constants');
 
-const { NODE_ENV, DB_ADDRESS } = process.env;
+const { NODE_ENV, DB_ADDRESS } = process.env; // файл с важными данными, хранящийся на ВМ
 
 const { PORT = 3050 } = process.env; // файл .env хранится на сервере
 const app = express(); // app работает через фреймворк Express

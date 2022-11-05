@@ -17,7 +17,7 @@ mainRouter.use(requestLogger);
 
 mainRouter.use('/signin', signInRouter); // авторизация пользователя
 mainRouter.use('/signup', signUpRouter); // регистрация пользователя
-mainRouter.use(auth); // проверка токена
+mainRouter.use(auth); // проверка токена; все следующие роуты защищены авторизацией
 mainRouter.use('/users', usersRouter); // пути для работы с карточками
 mainRouter.use('/movies', moviesRouter); // пути для работы с пользователем
 mainRouter.use('/', (req, res, next) => { next(new NotFoundError('страница не найдена')); }); // введён неизвестный путь
