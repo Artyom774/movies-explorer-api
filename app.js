@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express'); // фреймворк express для NodeJS
 const bodyParser = require('body-parser'); // анализирует тела входящих запросов в промежуточном программном обеспечении
 const mongoose = require('mongoose'); // база данных NongoDB
+const { errors } = require('celebrate');
 const usersRouter = require('./routes/usersRouter');
 const moviesRouter = require('./routes/moviesRouter');
 const signInRouter = require('./routes/signInRouter');
@@ -11,6 +12,7 @@ const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/errorHandler');
 const NotFoundError = require('./errors/NotFoundError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const mongoAddress = require('./utils/constants');
 
 const { NODE_ENV, DB_ADDRESS } = process.env;
 
@@ -40,7 +42,7 @@ app.use((req, res, next) => {
   return next();
 });
 
-mongoose.connect(NODE_ENV === 'production' ? DB_ADDRESS : 'mongodb://localhost:27017/bitfilmsdb', { // подключение к базе MongooseDB
+mongoose.connect(NODE_ENV === 'production' ? DB_ADDRESS : mongoAddress, { // подключение к базе MongooseDB
   useNewUrlParser: true,
 });
 
@@ -54,6 +56,7 @@ app.use(auth); // проверка токена
 app.use('/users', usersRouter); // пути для работы с карточками
 app.use('/movies', moviesRouter); // пути для работы с пользователем
 app.use('/', (req, res, next) => { next(new NotFoundError('страница не найдена')); }); // введён неизвестный путь
+app.use(errors()); // обработка ошибок библиотеки celebrate
 app.use(errorLogger); // логи
 app.use(errorHandler); // обработка ошибок сервера
 

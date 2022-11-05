@@ -10,7 +10,7 @@ usersRouter.get('/me', getMeById); // возвращает информацию 
 usersRouter.patch('/me', celebrate({ // обновляет информацию о пользователе (email и имя)
   body: Joi.object().keys({
     email: Joi.string().required().email(),
-    name: Joi.string().min(2).max(30),
+    name: Joi.string().required().min(2).max(30),
   }),
 }), updateMeById);
 
