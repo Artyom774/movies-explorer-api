@@ -12,6 +12,8 @@ const app = express(); // app работает через фреймворк Exp
 
 const allowedCors = [ // разрешённые домены для запросов на этот сервер
   'http://localhost:3000',
+  'https://your-mesto.nomoredomains.icu/',
+  'http://your-mesto.nomoredomains.icu/',
 ];
 
 app.use((req, res, next) => {
